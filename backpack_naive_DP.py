@@ -8,19 +8,19 @@ class Solution:
     @return: The maximum size
     """
     def backPack(self, m, A):
-        # K(n, m) = max(K(n - 1, m), K(n - 1, m - A[n]) + A[n])
+        """
+        F(n, m) = max(F(n - 1, m), F(n - 1, m - A[n]) + A[n])
+
+        """
         n = len(A)
-        K = [[0] * (m + 1) for _ in range(n + 1)]  # [number of item, weight]
+        F = [[0] * (m + 1) for _ in range(n + 1)]  # [number of item, weight]
         
-        for i in range(n + 1):
-            for w in range(m + 1):
-                if i == 0 or w == 0:
-                    K[i][w] = 0
-                elif A[i-1] > w:
-                    K[i][w] = K[i-1][w]
-                else:
-                    K[i][w] = max(K[i-1][w], K[i-1][w - A[i-1]] + A[i-1])
+        for i in range(1, n + 1):
+            for w in range(1, m + 1):
+                F[i][w] = F[i-1][w]
+                if A[i-1] <= w:
+                    F[i][w] = max(F[i-1][w], F[i-1][w - A[i-1]] + A[i-1])
                     
-        return K[n][m]
+        return F[n][m]
 
 print(Solution().backPack(10, [3,4,8,5]))
