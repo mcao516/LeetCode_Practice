@@ -11,15 +11,15 @@ class Solution:
     def findThePivot(self, nums: List[int]):
         l, r = 0, len(nums) - 1
         
-        mid = l + (r - l) // 2
         while l < r:
+            mid = l + (r - l) // 2
+            
             if nums[mid] > nums[r]:
                 l = mid + 1
             else:
                 r = mid
-            mid = l + (r - l) // 2
         
-        return mid
+        return l
 
     def binarySearch(self, arr, l, r, x):
         if r >= l:
