@@ -1,25 +1,23 @@
-def binarySearch(arr, l, r, x):
-    """
-    Returns index of x in arr if present, else -1.
-    
-    """
-    # Check base case
-    if r >= l:
+def binarySearch(arr, l, r, x): 
+    while l <= r:
         mid = l + (r - l) // 2
 
         if arr[mid] == x:
             return mid
-        elif arr[mid] > x:
-            return binarySearch(arr, l, mid-1, x)
+        # If x is greater, ignore left half
+        elif arr[mid] < x:
+            l = mid + 1
+        # If x is smaller, ignore right half
         else:
-            return binarySearch(arr, mid+1, r, x)
-            
-    else:
-        return -1
+            r = mid - 1
+    
+    # If we reach here, then the element was not present
+    # return -1
+    return r
 
 # Driver Code 
-arr = [ 2, 3, 4, 10, 40]
-x = 10
+arr = [ 2, 3, 4, 10, 40 ] 
+x = 11
 
 # Function call 
 result = binarySearch(arr, 0, len(arr)-1, x)
