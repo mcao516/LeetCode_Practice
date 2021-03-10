@@ -14,6 +14,9 @@ class Solution:
         while l < r:
             mid = l + (r - l) // 2
             
+            # Let consider two cases:
+            # nums[pivot-1], nums[pivot]
+            # nums[pivot], nums[pivot+1]
             if nums[mid] > nums[r]:
                 l = mid + 1
             else:
