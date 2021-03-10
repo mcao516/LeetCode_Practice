@@ -1,21 +1,19 @@
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
         """
-        F(j) = F(j - w) if w exits
+        F[i] = F[i - j] for every j in wordDict
         
+        F[i]: if the first i chars is cuttable
         """
         n = len(s)
-        F = [False] * n
+        F = [False] * (n + 1)
         
-        for i in range(n):
+        F[0] = True
+        for i in range(1, n + 1):
+            cuttable = []
             for w in wordDict:
-                if i + 1 < len(w):
-                    F[i] = False
-                elif i + 1 == len(w) and s[0: i+1] == w:
-                    F[i] = True
-                elif i+1-len(w) >= 0 and w == s[i+1-len(w): i+1]:
-                    F[i] = True and F[i-len(w)]
-                    
-                if F[i]: break
-                        
-        return F[n-1]
+                if i >= len(w) and s[i-len(w):i] == w:
+                    cuttable.append(F[i-len(w)])
+            F[i] = any(cuttable)
+
+        return F[n]
