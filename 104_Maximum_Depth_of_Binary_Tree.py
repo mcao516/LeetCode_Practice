@@ -28,3 +28,29 @@ class Solution:
                 queue.append(node.right)
         
         return max_depth
+
+
+class Solution2:
+    def maxDepth(self, root: TreeNode) -> int:
+        if root is None: return 0
+        
+        queue = [root]
+        outputs = []
+        
+        while(len(queue) > 0):
+            level = []
+            
+            for _ in range(len(queue)):
+                node = queue.pop(0)
+                
+                level.append(node)
+                
+                if node.left is not None:
+                    queue.append(node.left)
+                    
+                if node.right is not None:
+                    queue.append(node.right)
+            
+            outputs.append(level)
+            
+        return len(outputs)
