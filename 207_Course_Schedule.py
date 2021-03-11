@@ -3,31 +3,26 @@ from collections import defaultdict
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         graph = defaultdict(list)
-        inDegree = [0] * numCourses
+        in_degree = [0] * numCourses
         
         for pre in prerequisites:
             graph[pre[1]].append(pre[0])
-            inDegree[pre[0]] += 1
-            
-        # enqueue all nodes with indegree equals zero
-        queue = []
-        for i in range(numCourses):
-            if inDegree[i] == 0:
-                queue.append(i)
+            in_degree[pre[0]] += 1
+             
+        queue, order = [], []
         
-        result = []
-        while(len(queue) > 0):
+        for node in range(numCourses):
+            if in_degree[node] == 0:
+                queue.append(node)
+                
+        while len(queue) > 0:
             node = queue.pop(0)
-            result.append(node)
+            order.append(node)
             
             for n in graph[node]:
-                inDegree[n] -= 1
+                in_degree[n] -= 1
                 
-                if inDegree[n] == 0:
+                if in_degree[n] == 0:
                     queue.append(n)
-            
-        if len(result) != numCourses:
-            return False
-        else:
-            return True
-        
+                    
+        return len(order) == numCourses
