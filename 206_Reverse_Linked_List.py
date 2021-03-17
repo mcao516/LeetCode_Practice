@@ -6,20 +6,14 @@
 
 class Solution:
     def reverseList(self, head: ListNode) -> ListNode:
-        if head is None:
-            return None
+        """Three nodes: previous node, current node and the next node."""
+        prev = None
         
-        # get the end node
-        end = head
-        while end.next is not None:
-            end = end.next
-        
-        temp = head
-        while temp != end:
-            to_add = temp
-            temp = temp.next
+        curr = head
+        while curr is not None:
+            next_node = curr.next
+            curr.next = prev
+            prev = curr
+            curr = next_node
             
-            to_add.next = end.next
-            end.next = to_add
-            
-        return end
+        return prev
