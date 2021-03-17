@@ -1,7 +1,9 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
+        mapping = {}  # left: index
+        
         for i, n in enumerate(nums):
-            for j in range(i + 1, len(nums)):
-                if n + nums[j] == target:
-                    return [i, j]
-        return None
+            if n in mapping:
+                return [i, mapping[n]]
+            else:
+                mapping[target - n] = i
