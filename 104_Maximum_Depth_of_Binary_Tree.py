@@ -34,7 +34,7 @@ class Solution2:
     def maxDepth(self, root: TreeNode) -> int:
         if root is None: return 0
         
-        queue = [root]
+        queue = [root]  # queue for each level
         outputs = []
         
         while(len(queue) > 0):
