@@ -15,17 +15,17 @@ class Solution:
         return max(K)
 
 
-# class Solution2:
-#     def maxSubArray(self, nums: List[int]) -> int:
-#         """
-#         F[i] = max(F[i-1], nums[i])
+class Solution2:
+    def maxSubArray(self, nums: List[int]) -> int:
+        """
+        F[i] = max(F[i-1], nums[i])
         
-#         """
-#         n = len(nums)
-#         F = [0] * n
+        """
+        n = len(nums)
+        F = [0] * n
         
-#         F[0] = nums[0]
-#         for i in range(1, n):
-#             F[i] = max(F[i-1] + nums[i], nums[i])
+        F[0] = nums[0]
+        for i in range(1, n):
+            F[i] = max(F[i-1] + nums[i], nums[i])
             
-#         return max(F)
+        return max(F)
