@@ -1,7 +1,10 @@
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
-        # K(i): maxSubArray for A[0:i] which must has A[i] as the end element
-        # K(i) = (K(i-1) > 0 ? K(i-1) : 0) + A[i]
+        """
+        K(i): maxSubArray for A[0:i] which must has A[i] as the end element
+        K(i) = (K(i-1) > 0 ? K(i-1) : 0) + A[i]
+        
+        """
         n = len(nums)
         K = [0] * n
         
