@@ -18,11 +18,11 @@ class Solution:
         return candidate
 
 
-# class Solution2:
-#     def majorityElement(self, nums: List[int]) -> int:
-#         majority_count = len(nums) // 2
+class Solution2:
+    def majorityElement(self, nums: List[int]) -> int:
+        majority_count = len(nums) // 2
         
-#         while True:
-#             candidate = random.choice(nums)
-#             if sum(1 for n in nums if n == candidate) > majority_count:
-#                 return candidate
+        while True:
+            candidate = random.choice(nums)
+            if sum(1 for n in nums if n == candidate) > majority_count:
+                return candidate
